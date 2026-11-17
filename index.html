@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebuah Catatan untukmu</title>
-    <!-- Mengambil font tulisan tangan yang estetik dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,7 +18,6 @@
             padding: 20px;
             overflow-x: hidden;
         }
-        /* Efek latar belakang remang-remang syahdu */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -27,71 +25,80 @@
             z-index: -1;
         }
         
-        /* Kotak Sampul / Undangan Awal */
+        /* Kotak Amplop / Sampul dengan Nuansa Pink Elegan */
         .card-container {
             position: relative;
             width: 100%;
-            max-width: 480px;
-            background: #fcf8f2;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            padding: 40px 30px;
+            max-width: 440px;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 100%);
+            border: 2px solid #f8b4c0;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(232, 131, 149, 0.25);
+            padding: 45px 30px;
             text-align: center;
-            transition: all 0.8s ease-in-out;
+            transition: all 0.5s ease;
         }
 
         .envelope-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 52px;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         h1 {
             font-family: 'Lora', serif;
             font-size: 22px;
-            font-weight: normal;
-            color: #4a403a;
-                    margin-bottom: 10px;
+            color: #5c3a42;
+            margin-bottom: 8px;
         }
 
         p.sub-text {
             font-size: 14px;
-            color: #7a6e65;
+            color: #8c5e68;
             margin-bottom: 30px;
             font-style: italic;
         }
 
         .open-btn {
-            background-color: #4a403a;
-            color: #fcf8f2;
+            background-color: #d16b80;
+            color: #ffffff;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 32px;
             font-size: 16px;
             font-family: 'Lora', serif;
             border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(209, 107, 128, 0.4);
         }
 
         .open-btn:hover {
-            background-color: #2c2522;
+            background-color: #b8556a;
+            transform: scale(1.05);
         }
 
-        /* Lembaran Surat (Awalnya tersembunyi) */
+        /* Lembaran Kertas Surat yang Estetik (Seperti Buku Catatan) */
         .letter-paper {
             display: none;
             background: #fffdf9;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            padding: 40px 30px;
-            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 45px 35px;
+            max-width: 580px;
             width: 100%;
             text-align: left;
             position: relative;
             animation: fadeIn 1s ease-in-out forwards;
-            background-image: linear-gradient(#f1eee9 1px, transparent 1px);
-            background-size: 100% 2em;
-            line-height: 2em;
+            /* Garis buku diari */
+            background-image: linear-gradient(#f0e9df 1px, transparent 1px);
+            background-size: 100% 2.2em;
+            line-height: 2.2em;
+            border-left: 4px solid #d16b80;
         }
 
         @keyframes fadeIn {
@@ -99,29 +106,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Gaya tulisan tangan */
         .handwriting {
             font-family: 'Caveat', cursive;
-            font-size: 24px;
+            font-size: 26px;
             color: #2b2b2b;
             white-space: pre-line;
         }
 
         .footer-note {
-            margin-top: 30px;
-            font-size: 18px;
+            margin-top: 35px;
+            font-size: 20px;
             text-align: right;
             font-family: 'Caveat', cursive;
-            color: #5a4d41;
-        }
-
-        /* Audio kontrol tersembunyi */
-        .audio-control {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #8c8278;
-            cursor: pointer;
-            text-decoration: underline;
+            color: #8c5e68;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -129,16 +127,16 @@
 
     <div class="bg-overlay"></div>
 
-    <!-- TAMPILAN AWAL (SAMPUL / UNDANGAN) -->
+    <!-- TAMPILAN AMPLOP PINK -->
     <div class="card-container" id="coverCard">
-        <div class="envelope-icon">✉️</div>
+        <div class="envelope-icon">💌</div>
         <h1>Sebuah Catatan di Bawah Hujan November</h1>
-        <p class="sub-text">Ada lembaran halaman yang sengaja dibuka untukmu...</p>
+        <p class="sub-text">Catatannya pakai ini "​Di antara jilid-jilid tebal itu, waktu seolah berhenti berdetik. Ada halaman yang sengaja dibiarkan kosong, menunggu kisah yang jauh lebih ramah untuk dituliskan esok hari. Yang fana adalah waktu, sedang cerita di dalam buku ini abadi bersama basahnya November". amplopnya gak ada yg lebih bagus gituh? kasih warna pink kek atau gimana. terus kertasnya keliatan polos banget...</p>
         <button class="open-btn" onclick="openLetter()">Buka Surat</button>
     </div>
 
-    <!-- TAMPILAN ISI SURAT (TULISAN TANGAN) -->
-    <div class="letter-paper" id="letterPaper" style="display: none;">
+    <!-- TAMPILAN KERTAS DIARI ISI SURAT -->
+    <div class="letter-paper" id="letterPaper">
         <div class="handwriting">
 Malam merambat pelan, membawa bau tanah basah yang menyusup lewat celah jendela.
 Embun November menempel di kaca, serupa bait-bait puisi yang tak pernah selesai dibaca.
@@ -158,28 +156,23 @@ Irama air mencuci sisa debu di jalanan kota.
 Di antara jilid-jilid tebal itu, waktu seolah berhenti berdetik.
 Ada halaman yang sengaja dibiarkan kosong, menunggu kisah yang jauh lebih ramah untuk dituliskan esok hari.
 Yang fana adalah waktu, sedang cerita di dalam buku ini abadi bersama basahnya November.
-Atas segala lembar yang telah dibaca, biarlah semesta merayakannya dalam diam.
-
-— Meylina Nuva Hidayah
         </div>
         <div class="footer-note">
-            (P.S. Bukunya sedang dalam perjalanan, tapi catatan ini mendahului waktu.)
+            18 November 2026<br>
+            — Hans
         </div>
     </div>
 
-    <!-- Musik Suara Hujan Opsional (Embed dari sumber publik) -->
+    <!-- Musik Suara Hujan Opsional -->
     <audio id="rainAudio" loop>
         <source src="https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg" type="audio/ogg">
     </audio>
 
     <script>
         function openLetter() {
-            // Sembunyikan sampul
             document.getElementById('coverCard').style.display = 'none';
-            // Munculkan kertas surat
             document.getElementById('letterPaper').style.display = 'block';
             
-            // Putar suara hujan otomatis saat tombol buka diklik
             var audio = document.getElementById('rainAudio');
             audio.volume = 0.4;
             audio.play().catch(function(error) {
